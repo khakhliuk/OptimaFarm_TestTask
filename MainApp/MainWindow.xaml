@@ -1,0 +1,52 @@
+﻿<Window x:Class="MainApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MainApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800">
+    <Grid>
+        <Button x:Name="AddButton" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="67"/>
+        <Button x:Name="EditButton" Content="Редактировать" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="93" Margin="67,0,0,0"/>
+        <Button x:Name="DeleteAllButton" Content="Удалить всех" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="78" Margin="524,0,0,0"/>
+        <Button x:Name="FindButton" Content="Найти" HorizontalAlignment="Left" VerticalAlignment="Top" Height="21" Width="62" Margin="273,25,0,0"/>
+        <Button x:Name="FireButton" Content="Уволить" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="62" Margin="160,0,0,0"/>
+        <Button x:Name="InfoButton" Content="Статистика" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="70" Margin="222,0,0,0"/>
+        <Button x:Name="ImportButton" Content="Импорт" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="62" Margin="292,0,0,0"/>
+        <Button x:Name="ExportButton" Content="Экспорт" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="62" Margin="354,0,0,0"/>
+
+        <DataGrid x:Name="DbGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="-4,49,-2,-30" IsSynchronizedWithCurrentItem="False" CanUserAddRows="False" CanUserDeleteRows="False" FontSize="14" IsReadOnly="True">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Status}" Value="Уволен">
+                            <Setter Property="Background" Value="Yellow"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID"  Binding="{Binding Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Second Name"  Binding="{Binding SecondName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Surname"  Binding="{Binding Surname}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Address"  Binding="{Binding Address}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Birthday" Binding="{Binding Birthday, StringFormat=\{0:dd.MM.yy\}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Phone"  Binding="{Binding Phone, StringFormat=\{0:(0##)-###-####\}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Position"  Binding="{Binding Position}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Status"  Binding="{Binding Status}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Salary"  Binding="{Binding Salary, StringFormat=\{0:C\}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Hire Date"  Binding="{Binding HireDate, StringFormat=\{0:dd.MM.yy\}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Fire Date"  Binding="{Binding FireDate, StringFormat=\{0:dd.MM.yy\}}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ComboBox x:Name="SearchComboBox" HorizontalAlignment="Left" Margin="4,25,0,0" VerticalAlignment="Top" Width="93" SelectedIndex="0">
+            <ComboBoxItem Content="По имени" FontSize="14"/>
+            <ComboBoxItem Content="По ID"/>
+        </ComboBox>
+        <TextBox x:Name="SearchTextBox" HorizontalAlignment="Left" Margin="97,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="176" Height="20"/>
+        <Button x:Name="SearchCancelButton" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Top" Height="21" Width="62" Margin="335,25,0,0"/>
+    </Grid>
+</Window>

@@ -1,0 +1,19 @@
+﻿<Window x:Class="MainApp.Windows.StatisticWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MainApp.Windows"
+        mc:Ignorable="d"
+        Title="StatisticWindow" Height="176" Width="379"
+        Loaded="StatisicWindow_Loaded">
+    <Grid>
+        <Label Content="Количество сотрудников:" HorizontalAlignment="Left" Height="35" Margin="10,10,0,0" VerticalAlignment="Top" Width="229" FontSize="18"/>
+        <Label Content="Средняя зарплата:" HorizontalAlignment="Left" Height="35" Margin="10,50,0,0" VerticalAlignment="Top" Width="229" FontSize="18"/>
+        <Label Content="Количество уволенных:" HorizontalAlignment="Left" Height="35" Margin="10,90,0,0" VerticalAlignment="Top" Width="229" FontSize="18"/>
+        <Label x:Name="EmployeeCountLabel" Content="1" HorizontalAlignment="Left" Height="35" Margin="239,10,0,0" VerticalAlignment="Top" Width="112" FontSize="18"/>
+        <Label x:Name="MidSalaryLabel" Content="2" HorizontalAlignment="Left" Height="35" Margin="239,50,0,0" VerticalAlignment="Top" Width="112" FontSize="18"/>
+        <Label x:Name="FiredEmployeeCountLabel" Content="3" HorizontalAlignment="Left" Height="35" Margin="239,90,0,0" VerticalAlignment="Top" Width="112" FontSize="18"/>
+
+    </Grid>
+</Window>
