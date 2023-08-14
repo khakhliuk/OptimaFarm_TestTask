@@ -91,7 +91,7 @@ namespace MainApp
 
                 if (employeeDTOs == null)
                 {
-                    MessageBox.Show("Error: File is empty");
+                    MessageBox.Show("Error: Cannot parse data from file.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 

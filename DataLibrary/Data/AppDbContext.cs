@@ -14,7 +14,7 @@ namespace DataLibrary.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=employdb.db");
+            optionsBuilder.UseSqlite("Data Source=employeedata.db");
         }
     }
 }

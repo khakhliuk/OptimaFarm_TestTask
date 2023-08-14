@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Windows;
 
 namespace MainApp.Helpers
 {
@@ -25,41 +26,60 @@ namespace MainApp.Helpers
         {
             Stream fileStream = openFileDialog.OpenFile();
 
-            using (StreamReader reader = new StreamReader(fileStream))
+            try
             {
-                string fileContent = reader.ReadToEnd();
-                List<Employee>? employees = JsonConvert.DeserializeObject<List<Employee>>(fileContent);
-
-                if (employees == null)
+                using (StreamReader reader = new StreamReader(fileStream))
                 {
-                    return null;
-                }
+                    string fileContent = reader.ReadToEnd();
+                    List<Employee>? employees = JsonConvert.DeserializeObject<List<Employee>>(fileContent);
 
-                return mapper.Map<List<EmployeeDTO>>(employees);
+                    if (employees == null)
+                    {
+                        return null;
+                    }
+
+                    return mapper.Map<List<EmployeeDTO>>(employees);
+                }
             }
+            catch (Exception)
+            {
+                return null;
+            }
+
+            
         }
 
         public List<EmployeeDTO> ImportCSVData(string fileName)
         {
-            List<EmployeeDTO> readEmployees = File.ReadAllLines(fileName)
+            List<EmployeeDTO> readEmployees = new List<EmployeeDTO>();
+
+            try
+            {
+                readEmployees = File.ReadAllLines(fileName)
                    .Skip(1)
                    .Select(x => x.Split(','))
                    .Select(x => x.Select(x => x.Replace("\"", "")).ToArray())
                    .Select(x => new EmployeeDTO
                    {
-                       Name = x[0],
-                       SecondName = x[1],
-                       Surname = x[2],
-                       Address = x[3],
-                       Birthday = Convert.ToDateTime(x[4]),
-                       Phone = int.Parse(x[5]),
-                       Position = x[6],
-                       Status = x[7],
-                       Salary = int.Parse(x[8]),
-                       HireDate = Convert.ToDateTime(x[9]),
-                       FireDate = (x[10].Equals("")) ? null : Convert.ToDateTime(x[10]),
+                       Name = x[1],
+                       SecondName = x[2],
+                       Surname = x[3],
+                       Address = x[4],
+                       Birthday = Convert.ToDateTime(x[5]),
+                       Phone = int.Parse(x[6]),
+                       Position = x[7],
+                       Status = x[8],
+                       Salary = int.Parse(x[9]),
+                       HireDate = Convert.ToDateTime(x[10]),
+                       FireDate = (x[11].Equals("")) ? null : Convert.ToDateTime(x[11]),
 
                    }).ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            
 
             return readEmployees;
         }
